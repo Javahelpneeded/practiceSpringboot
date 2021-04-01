@@ -1,5 +1,6 @@
 package com.example.driver;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class ControllerClass {
 
 	@Autowired
-	public static List<Patient> list;
+	private ServiceClass serviceClass;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	@ResponseBody
-	public String test() {
-		return "Hello World" + list.get(0);
+	public String test() throws IOException {
+		return "Hello World" + serviceClass.getAllPatient();
 	}
 
 }
