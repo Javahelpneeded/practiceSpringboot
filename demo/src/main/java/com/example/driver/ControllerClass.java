@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class ControllerClass {
 
 	@Autowired
-	private ServiceClass serviceClass;
+	private DAO dao;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	@ResponseBody
 	public String test() throws IOException {
-		return "Hello World" + serviceClass.getAllPatient();
+		return "" + dao.getFirstPatient();
 	}
 
 }

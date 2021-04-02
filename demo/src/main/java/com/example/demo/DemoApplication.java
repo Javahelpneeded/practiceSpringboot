@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 import com.example.driver.ControllerClass;
+import com.example.driver.DAO;
 import com.example.driver.Patient;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -23,8 +24,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @ComponentScan(basePackageClasses=ControllerClass.class)
 public class DemoApplication {
 
+	@Autowired
+	public static DAO patients;
+	
 	public static void main(String[] args) throws JsonParseException, JsonMappingException, IOException {
 		SpringApplication.run(DemoApplication.class, args);
+		
+		patients.initialize();
 
 	}
 
