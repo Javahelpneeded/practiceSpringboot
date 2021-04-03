@@ -14,11 +14,12 @@ import java.util.List;
 
 @Repository
 public class DAO {
+	
 
     // Getting Patient information from a file instead of a database for right now, will need to create a new class for dao
     private List<Patient> list;
 
-    public void initialize() throws JsonParseException, JsonMappingException, IOException {
+    public DAO() throws JsonParseException, JsonMappingException, IOException {
         final ObjectMapper objectMapper = new ObjectMapper();
         list = objectMapper.readValue(
                 new File("MOCK_DATA.json"),
