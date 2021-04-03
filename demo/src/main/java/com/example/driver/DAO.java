@@ -10,26 +10,34 @@ import org.springframework.stereotype.Repository;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class DAO {
 
-    // Getting Patient information from a file instead of a database for right now, will need to create a new class for dao
-    private List<Patient> list;
+    private static List<Patient> list = new ArrayList<Patient>();
 
-    public void initialize() throws JsonParseException, JsonMappingException, IOException {
+    static {
         final ObjectMapper objectMapper = new ObjectMapper();
-        list = objectMapper.readValue(
-                new File("MOCK_DATA.json"),
-                new TypeReference<List<Patient>>(){});
+        try {
+            list = objectMapper.readValue(
+                    new File("/Users/christian/IdeaProjects/practiceSpringboot/demo/src/main/resources/MOCK_DATA.json"),
+                    new TypeReference<List<Patient>>(){});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         for(int i=0 ; i< 10; i++)
             System.out.println(list.get(i));
     }
-    //----------------------------------------------------------------------------------------------------------
 
     public Patient getFirstPatient() throws IOException {
+
         return list.get(0);
+    }
+
+    public Patient getPatient(int id){
+        return list.get(id);
     }
 }
